@@ -1,0 +1,11 @@
+.post{
+    background-color: aquamarine;
+    text-align: center;   
+    cursor: pointer;
+}
+.post ul {
+    list-style: none;
+}
+.postMalone{
+    cursor: unset;
+}
