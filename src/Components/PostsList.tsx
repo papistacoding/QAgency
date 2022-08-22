@@ -22,10 +22,12 @@ export const PostsList = (props: ILoggerProps) => {
         usersArray = users;
         getPosts().then((posts) => {
           postsArray = posts
-          const promises = posts.map((post:any, index:number) =>getComments(post.id))
-          Promise.all(promises).then((comments:any) => {
-            comments.forEach((comments:any) => {
+          const promises = posts.map((post:IPost) =>getComments(post.id))
+          Promise.all(promises).then((comments) => {
+            comments.forEach((comments) => {
               commentsArray = [...commentsArray, ...comments]
+              console.log(commentsArray);
+              
             })            
               setData({
                 users: usersArray,
@@ -74,8 +76,8 @@ export const PostsList = (props: ILoggerProps) => {
         <div className='post' key={post.id} onClick={() => {navigate(`/posts/${post.id}`, { state: {...data, postId: post.id}})}}>
         <h5> post title: {post.title}</h5>
           <ul> post body:{post.body}
-            <li> comment body: {data?.comments.filter((comment:IComment) => comment.id === post.id).map((comment:any) => comment.body) }</li>
-            <li> user name: {data?.users.filter((user:IUser) => user.id === post.userId).map((users:any) => users.name) }</li> 
+            <li> comment body: {data?.comments.filter((comment:IComment) => comment.id === post.id).map((comment:IComment) => comment.body) }</li>
+            <li> user name: {data?.users.filter((user:IUser) => user.id === post.userId).map((users:IUser) => users.name) }</li> 
           </ul>
       </div>)}
     </>

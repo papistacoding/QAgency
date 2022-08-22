@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { IComment, IPost, IUser } from '../interfaces/Data';
 import { ILoggerProps } from '../interfaces/LoggerProps'
+import { IPostData } from '../interfaces/PostData';
 
 export const Post = (props: ILoggerProps) => {
   console.log(props.consoleLogger, "<Post>");
-  const [data, setData] = useState<any>()
-  const {state}:any = useLocation();
+  const [data, setData] = useState<IPostData>();
+  const {state}: any = useLocation();
+  console.log(state);
+  
 
   useEffect(()=>{
     const postObj = state.posts.find((post:IPost) => post.id === state.postId)
